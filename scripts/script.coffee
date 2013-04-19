@@ -59,6 +59,12 @@ class VIZ
       @source.connect @context.destination
 
       @audio.play()
+      document.addEventListener "keyup", (e) =>
+        if e.which is 32 #spacebar
+          if @audio.paused
+            @audio.play()
+          else
+            @audio.pause()
 
       @jsNode.onaudioprocess = =>
 
@@ -67,8 +73,8 @@ class VIZ
 
         @onUpdate?()
     
-    info = document.getElementById 'info'
-    info.style.display = "none" if @enabled
+    warning = document.getElementById 'warning'
+    warning.style.display = "none" if @enabled
 
     @setup3D()
 

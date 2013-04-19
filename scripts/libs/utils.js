@@ -1,3 +1,8 @@
+/*
+	This code is borrowed from Justin Windle's Sketch.js
+	(https://github.com/soulwire/sketch.js)
+*/
+
 (function(){
 
 	// Mixed into the window object

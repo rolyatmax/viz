@@ -1,0 +1,55 @@
+@import url( http://fonts.googleapis.com/css?family=Lato:400,700 );
+
+html, body {
+	font-family: 'Lato', sans-serif;
+	background: #13242f;
+	overflow: hidden;
+	margin: 0;
+}
+
+#container:before {
+    background-image( radial-gradient( center, ellipse cover, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 95% ) );
+    position: absolute;
+    content: '';
+    z-index: 0;
+    opacity: 0.9;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+#container:after {
+    background: url( 'http://s.cdpn.io/1715/noise-1.png' );
+    position: absolute;
+    content: '';
+    z-index: 1;
+    opacity: 0.8;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+audio {
+	position: absolute;
+	z-index: 2;
+	right: 0;
+	top: 0;
+}
+
+#warning {
+	text-align: center;
+	font-size: 1.5em;
+	color: #fff;
+	text-shadow: 0 2px 2px rgba(0,0,0,0.2);
+	font-weight: 100;
+	position: relative;
+	width: 500px;
+	left: 50%;
+	margin-left: -250px;
+	z-index: 100;
+}
+a {
+	color: inherit;
+}
