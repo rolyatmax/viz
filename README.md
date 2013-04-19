@@ -11,3 +11,5 @@ Check out Justin's site for some awesome experiments: [http://soulwire.co.uk](ht
 I like this piece of music for this experiment because I think the electronic and percussive sounds make for some very satisfying choreography.
 
 Music by Jon Hopkins - "Small Memory, Tunng Remix"
+
+Check out the code at: [http://github.com/rolyatmax/viz](http://github.com/rolyatmax/viz).
