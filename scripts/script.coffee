@@ -16,7 +16,7 @@ class VIZ
 
   constructor: (@el = document.body, @audio = new Audio(), @smoothing = 0.8, @fft = 2048) ->
 
-    @mouse = x : 0, y : 0
+    @mouse = x : 200, y : -100, z : 50
 
     @AudioContext = self.AudioContext or self.webkitAudioContext
     @enabled = @AudioContext?
@@ -95,8 +95,8 @@ class VIZ
     @camera = new THREE.PerspectiveCamera 45, @dim.aspect, 1, 4000
 
     @camPos =
-      x: 0
-      y: 0
+      x: -200
+      y: -50
       z: 150
 
     @scene.add @camera

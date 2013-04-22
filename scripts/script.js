@@ -31,8 +31,9 @@
       this.animate = __bind(this.animate, this);
       this.render = __bind(this.render, this);
       this.mouse = {
-        x: 0,
-        y: 0
+        x: 200,
+        y: -100,
+        z: 50
       };
       this.AudioContext = self.AudioContext || self.webkitAudioContext;
       this.enabled = this.AudioContext != null;
@@ -103,8 +104,8 @@
       this.scene = new THREE.Scene();
       this.camera = new THREE.PerspectiveCamera(45, this.dim.aspect, 1, 4000);
       this.camPos = {
-        x: 0,
-        y: 0,
+        x: -200,
+        y: -50,
         z: 150
       };
       this.scene.add(this.camera);
