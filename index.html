@@ -13,34 +13,15 @@
 			<div id="warning"><p>This experiment requires a modern browser which supports the WebAudio API and WebGL.</p><p>There's a bug in Safari,<br>so better just use <a href="http://google.com/chrome" target="_blank">Chrome</a>.</p></div>
 
 		</div>
+<!-- 
 		<script src="scripts/libs/jquery-1.9.1.min.js"></script>
 		<script src="scripts/libs/Markdown.Converter.js"></script>
 		<script src="scripts/libs/Three.js"></script>
 		<script src="scripts/libs/utils.js"></script>
 		<script src="scripts/info.js"></script>
 		<script src="scripts/script.js"></script>
-
-		<script>
-
-			var opts = {
-				textURL: "README.md",
-				keyTrigger: true
-			};
-
-			var info = new Info( opts );
-
-			document.addEventListener("DOMContentLoaded", function() {
-
-				var SMOOTHING = 0.9;
-				var FFT = 1024;
-				var MP3_PATH = 'audio/small_memory_tunng.mp3';
-				var el = document.getElementById('container');
-				
-				var viz = window.viz = new VIZ(el, MP3_PATH, SMOOTHING, FFT);
-
-			});
-
-		</script>
+  -->
+		<script data-main="scripts/main" src="scripts/libs/require.js"></script>
 
 	</body>
 </html>

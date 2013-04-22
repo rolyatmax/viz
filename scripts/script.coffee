@@ -72,7 +72,7 @@ class VIZ
         @analyser.getByteTimeDomainData @data.waveform
 
         @onUpdate?()
-    
+
     warning = document.getElementById 'warning'
     warning.style.display = "none" if @enabled
 
@@ -103,7 +103,7 @@ class VIZ
     @camera.position.set @camPos.x, @camPos.y, @camPos.z
 
     @light = new THREE.DirectionalLight 0xffffff, .9
-    @light.position.set 0, 0, 150
+    @light.position.set 400, 1000, 1000
     @scene.add @light
 
     #@scene.fog = new THREE.Fog 0xffffff, 1, 10000
@@ -113,9 +113,10 @@ class VIZ
     #geometry = new THREE.CubeGeometry 1, 1, 1
     geometry = new THREE.SphereGeometry 1
 
+    # setup along the x axis
     for i in [0...@analyser.frequencyBinCount - 50] by 1
 
-      x = i * 0.4
+      x = i * 0.7
       x = -x if i % 2 == 0
 
       material = new THREE.MeshPhongMaterial({ color: 0x69D2E7 })
@@ -127,6 +128,28 @@ class VIZ
         x: x
         y: 0
         z: 0
+
+      bar = new Bar opts
+
+      @scene.add bar.shape
+
+      @bars.push bar
+
+    # setup along the z axis
+    for i in [0...@analyser.frequencyBinCount - 50] by 1
+
+      z = i * 0.7
+      z = -z if i % 2 == 0
+
+      material = new THREE.MeshPhongMaterial({ color: 0x69D2E7 })
+
+      opts =
+        material: material
+        geometry: geometry
+        id: i
+        x: 0
+        y: 0
+        z: z
 
       bar = new Bar opts
 
@@ -181,6 +204,7 @@ class Bar
     @shape = new THREE.Mesh opts.geometry, opts.material
     @shape.position.x = @position.x
     @shape.position.y = @position.y
+    @shape.position.z = @position.z
 
     @shape.rotation.x = PI / 5
     @shape.rotation.y = PI / 5

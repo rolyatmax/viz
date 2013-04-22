@@ -108,4 +108,4 @@ class Info
 		else
 			@closeInfo()
 
-window.Info = Info
+	window.Info = Info
