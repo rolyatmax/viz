@@ -141,7 +141,7 @@ class VIZ
 
 
     # setup a first diagonal
-    for i in [0...@analyser.frequencyBinCount / 3 - 25] by 1
+    for i in [0...@analyser.frequencyBinCount / 3 - 15] by 1
 
       x = z = i * 1
       x = z = -x if i % 2 == 0
@@ -165,7 +165,7 @@ class VIZ
       @bars.push bar
 
     # setup a second diagonal
-    for i in [0...@analyser.frequencyBinCount / 3 - 25] by 1
+    for i in [0...@analyser.frequencyBinCount / 3 - 15] by 1
 
       x = z = i * 1
       x = z = -x if i % 2 is 0

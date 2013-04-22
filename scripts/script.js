@@ -137,7 +137,7 @@
         this.scene.add(bar.shape);
         this.bars.push(bar);
       }
-      for (i = _j = 0, _ref1 = this.analyser.frequencyBinCount / 3 - 25; _j < _ref1; i = _j += 1) {
+      for (i = _j = 0, _ref1 = this.analyser.frequencyBinCount / 3 - 15; _j < _ref1; i = _j += 1) {
         x = z = i * 1;
         if (i % 2 === 0) {
           x = z = -x;
@@ -158,7 +158,7 @@
         this.scene.add(bar.shape);
         this.bars.push(bar);
       }
-      for (i = _k = 0, _ref2 = this.analyser.frequencyBinCount / 3 - 25; _k < _ref2; i = _k += 1) {
+      for (i = _k = 0, _ref2 = this.analyser.frequencyBinCount / 3 - 15; _k < _ref2; i = _k += 1) {
         x = z = i * 1;
         if (i % 2 === 0) {
           x = z = -x;
