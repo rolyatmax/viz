@@ -18,7 +18,7 @@
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   VIZ = (function() {
-    function VIZ(el, audio, smoothing, fft) {
+    function VIZ(el, audio, smoothing, fft, colors) {
       var src, warning,
         _this = this;
 
@@ -26,6 +26,7 @@
       this.audio = audio != null ? audio : new Audio();
       this.smoothing = smoothing != null ? smoothing : 0.8;
       this.fft = fft != null ? fft : 2048;
+      this.colors = colors != null ? colors : [0x69D2E7, 0xBEFAF6];
       this.resizeWindow = __bind(this.resizeWindow, this);
       this.onMouseMove = __bind(this.onMouseMove, this);
       this.animate = __bind(this.animate, this);
@@ -86,7 +87,7 @@
     }
 
     VIZ.prototype.setup3D = function() {
-      var aspect, bar, geometry, height, i, material, opts, width, x, z, _i, _j, _ref, _ref1;
+      var aspect, bar, color, geometry, height, i, material, opts, width, x, z, _i, _j, _k, _l, _ref, _ref1, _ref2, _ref3;
 
       width = this.el.offsetWidth;
       height = window.innerHeight;
@@ -120,8 +121,9 @@
         if (i % 2 === 0) {
           x = -x;
         }
+        color = random(this.colors);
         material = new THREE.MeshPhongMaterial({
-          color: 0x69D2E7
+          color: color
         });
         opts = {
           material: material,
@@ -135,13 +137,56 @@
         this.scene.add(bar.shape);
         this.bars.push(bar);
       }
-      for (i = _j = 0, _ref1 = this.analyser.frequencyBinCount - 50; _j < _ref1; i = _j += 1) {
+      for (i = _j = 0, _ref1 = this.analyser.frequencyBinCount / 3 - 25; _j < _ref1; i = _j += 1) {
+        x = z = i * 1;
+        if (i % 2 === 0) {
+          x = z = -x;
+        }
+        color = random(this.colors);
+        material = new THREE.MeshPhongMaterial({
+          color: color
+        });
+        opts = {
+          material: material,
+          geometry: geometry,
+          id: i,
+          x: x,
+          y: 0,
+          z: z
+        };
+        bar = new Bar(opts);
+        this.scene.add(bar.shape);
+        this.bars.push(bar);
+      }
+      for (i = _k = 0, _ref2 = this.analyser.frequencyBinCount / 3 - 25; _k < _ref2; i = _k += 1) {
+        x = z = i * 1;
+        if (i % 2 === 0) {
+          x = z = -x;
+        }
+        color = random(this.colors);
+        material = new THREE.MeshPhongMaterial({
+          color: color
+        });
+        opts = {
+          material: material,
+          geometry: geometry,
+          id: i,
+          x: x,
+          y: 0,
+          z: -z
+        };
+        bar = new Bar(opts);
+        this.scene.add(bar.shape);
+        this.bars.push(bar);
+      }
+      for (i = _l = 0, _ref3 = this.analyser.frequencyBinCount - 50; _l < _ref3; i = _l += 1) {
         z = i * 0.7;
         if (i % 2 === 0) {
           z = -z;
         }
+        color = random(this.colors);
         material = new THREE.MeshPhongMaterial({
-          color: 0x69D2E7
+          color: color
         });
         opts = {
           material: material,

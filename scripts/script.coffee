@@ -14,7 +14,7 @@
 
 class VIZ
 
-  constructor: (@el = document.body, @audio = new Audio(), @smoothing = 0.8, @fft = 2048) ->
+  constructor: (@el = document.body, @audio = new Audio(), @smoothing = 0.8, @fft = 2048, @colors = [0x69D2E7, 0xBEFAF6]) ->
 
     @mouse = x : 200, y : -100, z : 50
 
@@ -113,13 +113,17 @@ class VIZ
     #geometry = new THREE.CubeGeometry 1, 1, 1
     geometry = new THREE.SphereGeometry 1
 
+
+
     # setup along the x axis
     for i in [0...@analyser.frequencyBinCount - 50] by 1
 
       x = i * 0.7
       x = -x if i % 2 == 0
 
-      material = new THREE.MeshPhongMaterial({ color: 0x69D2E7 })
+      color = random @colors
+
+      material = new THREE.MeshPhongMaterial({ color: color })
 
       opts =
         material: material
@@ -135,13 +139,65 @@ class VIZ
 
       @bars.push bar
 
+
+    # setup a first diagonal
+    for i in [0...@analyser.frequencyBinCount / 3 - 25] by 1
+
+      x = z = i * 1
+      x = z = -x if i % 2 == 0
+
+      color = random @colors
+
+      material = new THREE.MeshPhongMaterial({ color: color })
+
+      opts =
+        material: material
+        geometry: geometry
+        id: i
+        x: x
+        y: 0
+        z: z
+
+      bar = new Bar opts
+
+      @scene.add bar.shape
+
+      @bars.push bar
+
+    # setup a second diagonal
+    for i in [0...@analyser.frequencyBinCount / 3 - 25] by 1
+
+      x = z = i * 1
+      x = z = -x if i % 2 is 0
+
+      color = random @colors
+
+      material = new THREE.MeshPhongMaterial({ color: color })
+
+      opts =
+        material: material
+        geometry: geometry
+        id: i
+        x: x
+        y: 0
+        z: -z
+
+      bar = new Bar opts
+
+      @scene.add bar.shape
+
+      @bars.push bar
+
+
     # setup along the z axis
     for i in [0...@analyser.frequencyBinCount - 50] by 1
 
       z = i * 0.7
       z = -z if i % 2 == 0
 
-      material = new THREE.MeshPhongMaterial({ color: 0x69D2E7 })
+      color = random @colors
+
+      material = new THREE.MeshPhongMaterial({ color: color })
 
       opts =
         material: material
