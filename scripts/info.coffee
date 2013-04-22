@@ -35,7 +35,12 @@ class Info
 		@createDiv() if not @el?
 		@createButton() if not @btn?
 
-		if not opts.text? and not @html?
+		@container.className += " content_wrapper"
+		@el.className += " info_container"
+		@btn.className += " info_btn"
+		
+
+		if not opts.text? and not @html? and opts.textURL?
 			url = opts.textURL
 			arry = url.split "."
 			@isMarkdown = yes if arry[arry.length - 1] is "md"
@@ -63,14 +68,7 @@ class Info
 		@html = @text if not @html?
 		@html = @converter.makeHtml @text if @isMarkdown
 
-		@el.innerHTML = @html
-
-		transition = "left .5s cubic-bezier(0.23, 1, 0.32, 1)"
-
-		@container.style.position = "relative"
-		@container.style.transition = transition
-		@container.style.MozTransition = transition
-		@container.style.webkitTransition = transition
+		@el.innerHTML = @html if @html?
 
 		@attachEvents()
 
@@ -90,17 +88,18 @@ class Info
 	attachEvents: ->
 		@btn.addEventListener "click", @toggleInfo
 
-		document.addEventListener "keyup", (e) =>
-			@toggleInfo() if e.which is 73 # the letter i
+		if @keyTrigger
+			document.addEventListener "keyup", (e) =>
+				@toggleInfo() if e.which is 73 # the letter i
 
 	openInfo: =>
-		@el.className = "open"
-		@container.style.left = "500px"
+		@el.className += " open"
+		@container.className += " inactive"
 		@isOpen = yes
 
 	closeInfo: =>
-		@el.className = ""
-		@container.style.left = 0
+		@el.className = @el.className.replace("open", "")
+		@container.className = @container.className.replace("inactive", "")
 		@isOpen = no
 
 	toggleInfo: =>

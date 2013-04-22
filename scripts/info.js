@@ -55,7 +55,10 @@
       if (!(this.btn != null)) {
         this.createButton();
       }
-      if (!(opts.text != null) && !(this.html != null)) {
+      this.container.className += " content_wrapper";
+      this.el.className += " info_container";
+      this.btn.className += " info_btn";
+      if (!(opts.text != null) && !(this.html != null) && (opts.textURL != null)) {
         url = opts.textURL;
         arry = url.split(".");
         if (arry[arry.length - 1] === "md") {
@@ -83,19 +86,15 @@
     }
 
     Info.prototype.setup = function() {
-      var transition;
       if (!(this.html != null)) {
         this.html = this.text;
       }
       if (this.isMarkdown) {
         this.html = this.converter.makeHtml(this.text);
       }
-      this.el.innerHTML = this.html;
-      transition = "left .5s cubic-bezier(0.23, 1, 0.32, 1)";
-      this.container.style.position = "relative";
-      this.container.style.transition = transition;
-      this.container.style.MozTransition = transition;
-      this.container.style.webkitTransition = transition;
+      if (this.html != null) {
+        this.el.innerHTML = this.html;
+      }
       return this.attachEvents();
     };
 
@@ -115,22 +114,24 @@
     Info.prototype.attachEvents = function() {
       var _this = this;
       this.btn.addEventListener("click", this.toggleInfo);
-      return document.addEventListener("keyup", function(e) {
-        if (e.which === 73) {
-          return _this.toggleInfo();
-        }
-      });
+      if (this.keyTrigger) {
+        return document.addEventListener("keyup", function(e) {
+          if (e.which === 73) {
+            return _this.toggleInfo();
+          }
+        });
+      }
     };
 
     Info.prototype.openInfo = function() {
-      this.el.className = "open";
-      this.container.style.left = "500px";
+      this.el.className += " open";
+      this.container.className += " inactive";
       return this.isOpen = true;
     };
 
     Info.prototype.closeInfo = function() {
-      this.el.className = "";
-      this.container.style.left = 0;
+      this.el.className = this.el.className.replace("open", "");
+      this.container.className = this.container.className.replace("inactive", "");
       return this.isOpen = false;
     };
 
