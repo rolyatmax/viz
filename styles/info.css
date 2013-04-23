@@ -47,10 +47,10 @@
 	0% { -webkit-transform: rotateY(120deg); }
 	100% { -webkit-transform: rotateY(0deg); }
 }
-@-moz-keyframes info-anim {
+/*@-moz-keyframes info-anim {
     0% { -moz-transform: rotateY(120deg); }
     100% { -moz-transform: rotateY(0deg); }
-}
+}*/
 @keyframes info-anim {
     0% { transform: rotateY(120deg); }
     100% { transform: rotateY(0deg); }
@@ -63,19 +63,19 @@
 	        transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
 
 	-webkit-transform-style: preserve-3d;
-	   -moz-transform-style: preserve-3d;
+	   /*-moz-transform-style: preserve-3d;*/
 	        transform-style: preserve-3d;
 
 	-webkit-transform-origin: 0% 50%;
-	   -moz-transform-origin: 0% 50%;
+	   /*-moz-transform-origin: 0% 50%;*/
 	        transform-origin: 0% 50%;
 
 	-webkit-transform: rotateY(120deg);
-	   -moz-transform: rotateY(120deg);
+	   /*-moz-transform: rotateY(120deg);*/
 	        transform: rotateY(120deg);
 
 	-webkit-animation: info-anim 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s 1 normal forwards;
-	   -moz-animation: info-anim 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s 1 normal forwards;
+	   /*-moz-animation: info-anim 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s 1 normal forwards;*/
 	        animation: info-anim 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s 1 normal forwards;
 
 	position: absolute;

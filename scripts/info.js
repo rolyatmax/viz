@@ -6,8 +6,6 @@
 	on projects. If using Markdown, the Markdown.Converter.js file
 	is required as a dependency (https://code.google.com/p/pagedown/wiki/PageDown).
 
-	Also, requires jQuery ONLY IF you choose to load in your content from an external file
-
 	In the options object, you must include a container property which may be either
 	a string or an HTML element. If you specify an 'el' property (which is to be the
 	info element), it should reside outside of the container element.
@@ -23,7 +21,7 @@
       this.toggleInfo = __bind(this.toggleInfo, this);
       this.closeInfo = __bind(this.closeInfo, this);
       this.openInfo = __bind(this.openInfo, this);
-      var MDConverter, ajaxOpts, arry, success, url,
+      var MDConverter, arry, request, url,
         _this = this;
 
       this.opts = opts;
@@ -33,7 +31,6 @@
       this.text = opts.text || null;
       this.isMarkdown = opts.isMarkdown || false;
       this.html = opts.html || null;
-      this.$ = opts.$ || window.jQuery || null;
       this.keyTrigger = opts.keyTrigger || false;
       this.isOpen = false;
       if (typeof this.el === "string") {
@@ -54,29 +51,27 @@
       this.container.className += " content_wrapper";
       this.el.className += " info_container";
       this.btn.className += " info_btn";
-      if ((opts.text == null) && (this.html == null) && (opts.textURL != null)) {
-        url = opts.textURL;
+      if ((opts.text == null) && (this.html == null) && (opts.url != null)) {
+        url = opts.url;
         arry = url.split(".");
         if (arry[arry.length - 1] === "md") {
           this.isMarkdown = true;
         }
-        success = function(data) {
-          _this.text = data;
+        request = new XMLHttpRequest();
+        request.open("GET", url, true);
+        request.responseType = "text";
+        request.onload = function() {
+          _this.text = request.response;
           return _this.setup();
         };
-        ajaxOpts = {
-          url: url,
-          dataType: 'text',
-          type: 'GET',
-          success: success
-        };
-        this.promise = this.$.ajax(ajaxOpts);
+        request.send();
+        this.loadingFromFile = true;
       }
       if (this.isMarkdown) {
         MDConverter = window.Markdown.Converter || window.pagedown.Converter;
         this.converter = new MDConverter();
       }
-      if (this.promise == null) {
+      if (this.loadingFromFile !== true) {
         this.setup();
       }
     }
@@ -140,10 +135,10 @@
       }
     };
 
-    window.Info = Info;
-
     return Info;
 
   })();
+
+  window.Info = Info;
 
 }).call(this);
