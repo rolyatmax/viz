@@ -1,6 +1,6 @@
 ###
   tbaldw.in
-  
+
   Music by Jon Hopkins (http://www.jonhopkins.co.uk) - Small Memory, Tunng Remix
 
   This documentation is helpful for the audio stuff:
@@ -89,6 +89,7 @@ class VIZ
     @renderer = new THREE.WebGLRenderer
       antialias: true
     @renderer.setSize @dim.width, @dim.height
+    @renderer.setClearColorHex( 0x13242f, 0 );
     @el.appendChild @renderer.domElement
 
     @scene = new THREE.Scene()
