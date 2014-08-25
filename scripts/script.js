@@ -47,7 +47,7 @@
         this.audio.src = src;
       }
       this.context = new this.AudioContext();
-      this.jsNode = this.context.createJavaScriptNode(this.fft);
+      this.jsNode = this.context.createScriptProcessor(this.fft);
       this.analyser = this.context.createAnalyser();
       this.analyser.smoothingTimeConstant = this.smoothing;
       this.analyser.fftSize = this.fft;

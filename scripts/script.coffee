@@ -34,7 +34,7 @@ class VIZ
     # lower numbers result in lower latency,
     # higher numbers help keep the audio from skipping or breaking up -
     # a problem which shows up with higher quality audio
-    @jsNode = @context.createJavaScriptNode @fft
+    @jsNode = @context.createScriptProcessor @fft
 
     @analyser = @context.createAnalyser();
     @analyser.smoothingTimeConstant = @smoothing; #default 0.8
