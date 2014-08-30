@@ -20,7 +20,7 @@ html, body {
 }
 
 #container:after {
-    background: url( 'http://s.cdpn.io/1715/noise-1.png' );
+    background: url( '../img/noise-1.png' );
     position: absolute;
     content: '';
     z-index: 1;
